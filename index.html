@@ -36,32 +36,84 @@
 
             
             if (playerSelecLower === computerSelection) {
-                return "Stalemate";
+                return 2; // Stalemate 
             } else {
                 switch (playerSelecLower) {
                     case "rock":
                     if (computerSelection === "scissor") {
-                        return `You won! ${playerSelecLower} beats ${computerSelection}`;
+                        return 0; // Won state
                     } else {
-                        return `You lost! ${computerSelection} beats ${playerSelecLower}`;
+                        return 1; // loss State
                     }
                     case "paper":
                     if (computerSelection === "rock") {
-                        return `You won! ${playerSelecLower} beats ${computerSelection}`;
+                        return 0; // Won state
                     } else {
-                        return `You lost! ${computerSelection} beats ${playerSelecLower}`;
+                        return 1; // loss State
                     }
                     case "scissor":
                     if (computerSelection === "paper") {
-                        return `You won! ${playerSelecLower} beats ${computerSelection}`;
+                        return 0; // Won state
                     } else {
-                        return `You lost! ${computerSelection} beats ${playerSelecLower}`;
+                        return 1; // loss State
                     }
                     default:
-                        return "Invalid user imput";
+                        return -1;
                         break;
                     
                 }
+            }
+
+        }
+
+        function game() {
+            // Runs a game of 5 rounds of rock, paper, scissors
+            // round limit is hardcoded
+            // outputs results per round, total score and winner
+
+            let playerScore = 0, computerScore = 0;
+            let playerInput, computerInput;
+            const MAXROUND = 5
+
+            for(let round = 0; round < MAXROUND; round++ ) {
+
+                // input check
+                do {
+                    playerInput = prompt("Choose your next move").toLowerCase()
+                } while (playerInput != "rock" && playerInput != "paper" && playerInput != "scissor" )
+
+                computerInput = computerPlay()
+
+                roundResult = playRound(playerInput, computerInput)
+                switch (roundResult) {
+                    case 0:
+                    playerScore += 1;
+                    console.log(`You win! ${playerInput} beats ${computerInput}`)
+                    break;
+                    case 1: 
+                    computerScore +=1 
+                    console.log(`You lose! ${computerInput} beats ${playerInput}`)
+                    break;
+                    case 2:
+                    console.log(`Stalemate! ${playerInput} can't beat ${computerInput}`)
+                    break;
+                }
+
+
+
+            }
+
+            console.log("GAME OVER!")
+
+            if (playerScore > computerScore) {
+                console.log("You win!");
+                console.log(`Your score: ${playerScore}\nYour rival's score: ${computerScore}`)
+            } else if(playerScore < computerScore) {
+                console.log("You lose!")
+                console.log(`Your score: ${playerScore}\nYour rival's score: ${computerScore}`)
+            } else {
+                console.log("Stalemate!")
+                console.log(`Your score: ${playerScore}\nYour rival's score: ${computerScore}`)
             }
 
         }
