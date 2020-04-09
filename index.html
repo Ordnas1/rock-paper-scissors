@@ -65,6 +65,14 @@
             }
 
         }
+        function checkInput() {
+            let input;
+            do {
+                input = prompt("Choose your next move").toLowerCase()
+            } while (input != "rock" && input != "paper" && input != "scissor" )
+
+            return input
+        }
 
         function game() {
             // Runs a game of 5 rounds of rock, paper, scissors
@@ -77,11 +85,8 @@
 
             for(let round = 0; round < MAXROUND; round++ ) {
 
-                // input check
-                do {
-                    playerInput = prompt("Choose your next move").toLowerCase()
-                } while (playerInput != "rock" && playerInput != "paper" && playerInput != "scissor" )
-
+                playerInput = checkInput()
+                
                 computerInput = computerPlay()
 
                 roundResult = playRound(playerInput, computerInput)
