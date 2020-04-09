@@ -25,6 +25,46 @@
                 break;
             }
         }
+
+        function playRound(playerSelection, computerSelection) {
+            // Plays a round of rock paper scissor 
+            // playerSelection and computerSelection are Strings 
+            // playerSelection must be either "rock", "paper" or "scissor"; computerSelection is supplied by computerPlay, or by an intermediate variable
+            // returns a string showing who's won or an error
+
+            playerSelecLower = playerSelection.toLowerCase()
+
+            
+            if (playerSelecLower === computerSelection) {
+                return "Stalemate";
+            } else {
+                switch (playerSelecLower) {
+                    case "rock":
+                    if (computerSelection === "scissor") {
+                        return `You won! ${playerSelecLower} beats ${computerSelection}`;
+                    } else {
+                        return `You lost! ${computerSelection} beats ${playerSelecLower}`;
+                    }
+                    case "paper":
+                    if (computerSelection === "rock") {
+                        return `You won! ${playerSelecLower} beats ${computerSelection}`;
+                    } else {
+                        return `You lost! ${computerSelection} beats ${playerSelecLower}`;
+                    }
+                    case "scissor":
+                    if (computerSelection === "paper") {
+                        return `You won! ${playerSelecLower} beats ${computerSelection}`;
+                    } else {
+                        return `You lost! ${computerSelection} beats ${playerSelecLower}`;
+                    }
+                    default:
+                        return "Invalid user imput";
+                        break;
+                    
+                }
+            }
+
+        }
     </script>
 </body>
 </html>
