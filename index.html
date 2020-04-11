@@ -3,125 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors!</title>
+    <title>Yan-ken-po!</title>
 </head>
 <body>
-    <script>
-        function computerPlay() {
-            // Computes computer play
-            // rock, paper, scissors is 0,1 and 2 respectively
+    <header class="game-header">
+        <h1>Yan-ken-po!</h1>
+        <p class="subtitle">By Ordnas</p>
+    </header>
+    <div id="game-container">
+        <div id="info-container">
+            <p id="player-score">Your score: 0</p>
+            <p id="comp-score">Your rival's score: 0</p>
+        </div>
+        <div id="text-display">
 
-            chosenPlay = Math.floor(Math.random() * 3); 
-
-            switch(chosenPlay) {
-                case 0:
-                return "rock";
-                case 1:
-                return "paper";
-                case 2: 
-                return "scissor";
-                default: 
-                return "INVALID CASE";
-                break;
-            }
-        }
-
-        function playRound(playerSelection, computerSelection) {
-            // Plays a round of rock paper scissor 
-            // playerSelection and computerSelection are Strings 
-            // playerSelection must be either "rock", "paper" or "scissor"; computerSelection is supplied by computerPlay, or by an intermediate variable
-            // returns a string showing who's won or an error
-
-            playerSelecLower = playerSelection.toLowerCase()
-
-            
-            if (playerSelecLower === computerSelection) {
-                return 2; // Stalemate 
-            } else {
-                switch (playerSelecLower) {
-                    case "rock":
-                    if (computerSelection === "scissor") {
-                        return 0; // Won state
-                    } else {
-                        return 1; // loss State
-                    }
-                    case "paper":
-                    if (computerSelection === "rock") {
-                        return 0; // Won state
-                    } else {
-                        return 1; // loss State
-                    }
-                    case "scissor":
-                    if (computerSelection === "paper") {
-                        return 0; // Won state
-                    } else {
-                        return 1; // loss State
-                    }
-                    default:
-                        return -1;
-                        break;
-                    
-                }
-            }
-
-        }
-        function checkInput() {
-            let input;
-            do {
-                input = prompt("Choose your next move").toLowerCase()
-            } while (input != "rock" && input != "paper" && input != "scissor" )
-
-            return input
-        }
-
-        function game() {
-            // Runs a game of 5 rounds of rock, paper, scissors
-            // round limit is hardcoded
-            // outputs results per round, total score and winner
-
-            let playerScore = 0, computerScore = 0;
-            let playerInput, computerInput;
-            const MAXROUND = 5
-
-            for(let round = 0; round < MAXROUND; round++ ) {
-
-                playerInput = checkInput()
-                
-                computerInput = computerPlay()
-
-                roundResult = playRound(playerInput, computerInput)
-                switch (roundResult) {
-                    case 0:
-                    playerScore += 1;
-                    console.log(`You win! ${playerInput} beats ${computerInput}`)
-                    break;
-                    case 1: 
-                    computerScore +=1 
-                    console.log(`You lose! ${computerInput} beats ${playerInput}`)
-                    break;
-                    case 2:
-                    console.log(`Stalemate! ${playerInput} can't beat ${computerInput}`)
-                    break;
-                }
-
-
-
-            }
-
-            console.log("GAME OVER!")
-
-            if (playerScore > computerScore) {
-                console.log("You win!");
-                console.log(`Your score: ${playerScore}\nYour rival's score: ${computerScore}`)
-            } else if(playerScore < computerScore) {
-                console.log("You lose!")
-                console.log(`Your score: ${playerScore}\nYour rival's score: ${computerScore}`)
-            } else {
-                console.log("Stalemate!")
-                console.log(`Your score: ${playerScore}\nYour rival's score: ${computerScore}`)
-            }
-
-        }
-    </script>
+        </div>
+        <div id="btn-container">
+            <button id="rock">rock</button>
+            <button id="paper">paper</button>
+            <button id="scissor">scissor</button>
+        </div>
+    </div>
 </body>
+<script src="scripts/script.js"></script>
 </html>
